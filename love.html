@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>给你的小惊喜 ❤️</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: linear-gradient(120deg, #ffecd2, #fcb69f);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: "Arial Rounded MT Bold", sans-serif;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.2);
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0 0 20px;
+            color: #ff5a6e;
+        }
+
+        .heart {
+            font-size: 80px;
+            cursor: pointer;
+            transition: transform 0.2s;
+            user-select: none;
+        }
+
+        .heart:active {
+            transform: scale(1.2);
+        }
+
+        .message {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #555;
+        }
+
+        .flower {
+            position: fixed;
+            animation: fall 3s linear forwards;
+            font-size: 24px;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(110vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <h1>给最爱的你 💌</h1>
+        <div class="heart" onclick="createFlowers()">❤️</div>
+        <div class="message">点一下我的心～</div>
+    </div>
+
+    <script>
+        function createFlowers() {
+            const emojis = ["🌸", "🌹", "💐", "💮", "🌷", "💝", "💘", "💖"];
+            for (let i = 0; i < 20; i++) {
+                const flower = document.createElement("div");
+                flower.className = "flower";
+                flower.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                flower.style.left = Math.random() * 100 + "vw";
+                flower.style.animationDuration = (Math.random() * 2 + 2) + "s";
+                document.body.appendChild(flower);
+                setTimeout(() => flower.remove(), 3000);
+            }
+        }
+    </script>
+</body>
+
+</html>
