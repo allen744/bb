@@ -4,37 +4,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>给你的小惊喜 ❤️</title>
+    <title>我想对你说 ❤️</title>
     <style>
         body {
             margin: 0;
-            overflow: hidden;
-            background: linear-gradient(120deg, #ffecd2, #fcb69f);
+            background: linear-gradient(135deg, #ffecd2, #fcb69f);
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             font-family: "Arial Rounded MT Bold", sans-serif;
+            user-select: none;
         }
 
         .card {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 30px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 25px;
             border-radius: 20px;
             box-shadow: 0 8px 32px rgba(31, 38, 135, 0.2);
             text-align: center;
+            max-width: 90%;
         }
 
         h1 {
-            margin: 0 0 20px;
+            margin: 0 0 15px;
             color: #ff5a6e;
+            font-size: 26px;
         }
 
         .heart {
             font-size: 80px;
             cursor: pointer;
             transition: transform 0.2s;
-            user-select: none;
         }
 
         .heart:active {
@@ -42,22 +43,16 @@
         }
 
         .message {
-            margin-top: 20px;
+            margin-top: 15px;
             font-size: 18px;
             color: #555;
+            min-height: 60px;
         }
 
-        .flower {
-            position: fixed;
-            animation: fall 3s linear forwards;
-            font-size: 24px;
-        }
-
-        @keyframes fall {
-            to {
-                transform: translateY(110vh) rotate(360deg);
-                opacity: 0;
-            }
+        .tip {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #999;
         }
     </style>
 </head>
@@ -65,22 +60,33 @@
 <body>
     <div class="card">
         <h1>给最爱的你 💌</h1>
-        <div class="heart" onclick="createFlowers()">❤️</div>
-        <div class="message">点一下我的心～</div>
+        <div class="heart" onclick="sayLove()">❤️</div>
+        <div class="message" id="loveMessage">点一下我的心～</div>
+        <div class="tip">多点点，有不同的惊喜哦</div>
     </div>
 
     <script>
-        function createFlowers() {
-            const emojis = ["🌸", "🌹", "💐", "💮", "🌷", "💝", "💘", "💖"];
-            for (let i = 0; i < 20; i++) {
-                const flower = document.createElement("div");
-                flower.className = "flower";
-                flower.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-                flower.style.left = Math.random() * 100 + "vw";
-                flower.style.animationDuration = (Math.random() * 2 + 2) + "s";
-                document.body.appendChild(flower);
-                setTimeout(() => flower.remove(), 3000);
-            }
+        const messages = [
+            "遇见你是我这辈子最幸运的事 ❤️",
+            "我想和你一起看遍所有的日出日落 🌅",
+            "你是我每天的心动理由 💗",
+            "和你在一起，连风都是甜的 🍬",
+            "我喜欢你，胜过昨天，不及明天 💕",
+            "余生很长，请多指教 👫"
+        ];
+
+        function sayLove() {
+            const msgEl = document.getElementById("loveMessage");
+            const randomMsg = messages[Math.floor(Math.random() * messages.length)];
+            msgEl.textContent = randomMsg;
+
+            // 简单的动画效果
+            msgEl.style.transition = "none";
+            msgEl.style.transform = "scale(0.9)";
+            setTimeout(() => {
+                msgEl.style.transition = "transform 0.3s";
+                msgEl.style.transform = "scale(1)";
+            }, 10);
         }
     </script>
 </body>
